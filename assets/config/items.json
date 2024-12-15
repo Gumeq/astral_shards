@@ -1,0 +1,22 @@
+{
+	"health_potion": {
+		"name": "Health Potion",
+		"image_path": "assets/images/items/Icon7.png"
+	},
+	"damage_boost": {
+		"name": "Damage Boost",
+		"image_path": "assets/images/items/Icon8.png"
+	},
+	"speed_boost": {
+		"name": "Speed Boost",
+		"image_path": "assets/images/items/Icon9.png"
+	},
+	"attack_speed_boost": {
+		"name": "Attack Speed Boost",
+		"image_path": "assets/images/items/Icon9.png"
+	},
+	"luck_boost": {
+		"name": "Luck Boost",
+		"image_path": "assets/images/items/Icon9.png"
+	}
+}

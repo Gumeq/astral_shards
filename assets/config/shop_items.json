@@ -1,0 +1,64 @@
+{
+	"items": [
+		{
+			"name": "Ability Power Boost",
+			"type": "buff",
+			"effect": "ability_power",
+			"magnitude": 5,
+			"duration": 0,
+			"cost": 10
+		},
+		{
+			"name": "Attack Speed Boost",
+			"type": "buff",
+			"effect": "attack_speed",
+			"magnitude": 1.2,
+			"duration": 0,
+			"cost": 10
+		},
+		{
+			"name": "Range Boost",
+			"type": "buff",
+			"effect": "attack_range",
+			"magnitude": 50,
+			"duration": 0,
+			"cost": 10
+		},
+		{
+			"name": "Speed Boost",
+			"type": "buff",
+			"effect": "movement_speed",
+			"magnitude": 1,
+			"duration": 0,
+			"cost": 5
+		},
+		{
+			"name": "Max HP Increase",
+			"type": "buff",
+			"effect": "max_hp",
+			"magnitude": 10,
+			"duration": 0,
+			"cost": 8
+		},
+		{
+			"name": "Luck Increase",
+			"type": "buff",
+			"effect": "luck",
+			"magnitude": 2,
+			"duration": 0,
+			"cost": 5
+		},
+		{
+			"name": "Healing Potion",
+			"type": "consumable",
+			"consumable_name": "healing_potion",
+			"cost": 5
+		},
+		{
+			"name": "Speed Potion",
+			"type": "consumable",
+			"consumable_name": "speed_potion",
+			"cost": 8
+		}
+	]
+}

@@ -1,0 +1,30 @@
+{
+	"healing_potion": {
+		"name": "Healing Potion",
+		"effect": "heal",
+		"magnitude": 25,
+		"duration": 1,
+		"image": "assets/images/items/Icon7.png"
+	},
+	"speed_potion": {
+		"name": "Speed Potion",
+		"effect": "movement_speed",
+		"magnitude": 5,
+		"duration": 10,
+		"image": "assets/images/items/Icon8.png"
+	},
+	"damage_elixir": {
+		"name": "Damage Elixir",
+		"effect": "damage",
+		"magnitude": 5,
+		"duration": 60,
+		"image": "assets/images/items/Icon9.png"
+	},
+	"luck_charm": {
+		"name": "Luck Charm",
+		"effect": "luck",
+		"magnitude": 5,
+		"duration": 60,
+		"image": "assets/images/items/Icon7.png"
+	}
+}

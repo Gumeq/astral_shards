@@ -1,0 +1,66 @@
+{
+	"bush": {
+		"image": "assets/images/enemies/Icon23.png",
+		"hp": 50,
+		"damage": 10,
+		"movement_speed": 1.0,
+		"size": 3,
+		"astral_shards_drop": 1
+	},
+	"mouse": {
+		"image": "assets/images/enemies/Icon18.png",
+		"hp": 40,
+		"damage": 10,
+		"movement_speed": 2.0,
+		"size": 2.0,
+		"astral_shards_drop": 2
+	},
+	"fire_skull": {
+		"image": "assets/images/enemies/Icon16.png",
+		"hp": 20,
+		"damage": 15,
+		"movement_speed": 10,
+		"size": 2,
+		"astral_shards_drop": 3
+	},
+	"slime": {
+		"image": "assets/images/enemies/Icon9.png",
+		"hp": 250,
+		"damage": 15,
+		"movement_speed": 1,
+		"size": 4,
+		"astral_shards_drop": 3
+	},
+	"snake": {
+		"image": "assets/images/enemies/Icon13.png",
+		"hp": 300,
+		"damage": 40,
+		"movement_speed": 2.5,
+		"size": 2.5,
+		"astral_shards_drop": 5
+	},
+	"spider": {
+		"image": "assets/images/enemies/Icon2.png",
+		"hp": 500,
+		"damage": 50,
+		"movement_speed": 3.5,
+		"size": 1.5,
+		"astral_shards_drop": 5
+	},
+	"demon": {
+		"image": "assets/images/enemies/Icon39.png",
+		"hp": 10000,
+		"damage": 25,
+		"movement_speed": 0.1,
+		"size": 5,
+		"astral_shards_drop": 100
+	},
+	"magma_demon": {
+		"image": "assets/images/enemies/Icon41.png",
+		"hp": 100,
+		"damage": 15,
+		"movement_speed": 2.5,
+		"size": 2.5,
+		"astral_shards_drop": 2
+	}
+}

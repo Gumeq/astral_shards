@@ -1,6 +1,7 @@
 WIDTH = 1600
 HEIGHT = 900
 FPS = 60
+WORLD_WIDTH, WORLD_HEIGHT = 10240, 10240
 
 # Colors
 WHITE = (255,255,255)
@@ -10,6 +11,26 @@ GREEN = (0,255,0)
 BLUE = (0,0,255)
 ORANGE = (255,165,0)
 PURPLE = (128,0,128)
+BACKGROUND_COLOR = (0,255,0)
+
+ENEMY_TYPES = {
+    "goblin": {
+        "image": "assets/enemies/goblin.png",
+        "hp": 50,
+        "damage": 10,
+        "xp": 5,
+        "scale": 1.0,
+        "speed": 2.0
+    },
+    "orc": {
+        "image": "assets/enemies/orc.png",
+        "hp": 100,
+        "damage": 20,
+        "xp": 10,
+        "scale": 1.5,
+        "speed": 1.5
+    }
+}
 
 ENEMY_WAVES = [
     {

@@ -1,14 +1,11 @@
-# loader.py
 import pygame
-from src.player import Player
-from item_factory import ItemFactory
-
+from src.item_factory import ItemFactory
 def load_enemy_images():
     images = [
         pygame.image.load("assets/images/enemies/Icon2.png").convert_alpha(),
         pygame.image.load("assets/images/enemies/Icon3.png").convert_alpha(),
         pygame.image.load("assets/images/enemies/Icon4.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon4.png").convert_alpha(),
+        pygame.image.load("assets/images/enemies/Icon5.png").convert_alpha(),
         pygame.image.load("assets/images/enemies/Icon6.png").convert_alpha(),
         pygame.image.load("assets/images/enemies/Icon7.png").convert_alpha(),
         pygame.image.load("assets/images/enemies/Icon8.png").convert_alpha(),
@@ -26,19 +23,12 @@ def load_enemy_images():
         pygame.image.load("assets/images/enemies/Icon20.png").convert_alpha(),
         pygame.image.load("assets/images/enemies/Icon21.png").convert_alpha(),
     ]
-    images = [pygame.transform.scale(img, (50, 50)) for img in images]
+    images = [pygame.transform.scale(img, (100, 100)) for img in images]
     return images
 
 def load_projectile_sprite():
     sprite_sheet = pygame.image.load("assets/images/player/Charge.png").convert_alpha()
     return sprite_sheet
-
-def load_item_icons():
-    return {
-        "hp": pygame.image.load("assets/images/potions/Icon7.png").convert_alpha(),
-        "damage": pygame.image.load("assets/images/potions/Icon8.png").convert_alpha(),
-        "fire_rate": pygame.image.load("assets/images/potions/Icon9.png").convert_alpha(),
-    }
 
 def load_item_factory():
     return ItemFactory()
@@ -75,6 +65,17 @@ def load_player_animations():
 
     for animation_name, data in animation_data.items():
         sprite_sheet = pygame.image.load(data["path"]).convert_alpha()
-        frames = Player._load_frames(sprite_sheet, data["num_frames"], data["frame_height"])
+        frames = _load_frames(sprite_sheet, data["num_frames"], data["frame_height"])
         animations[animation_name] = frames
     return animations
+
+def _load_frames(sprite_sheet, num_frames, frame_height):
+    """Extract frames from the sprite sheet."""
+    frames = []
+    sheet_width, _ = sprite_sheet.get_size()
+    frame_width = sheet_width // num_frames
+    for i in range(num_frames):
+        frame_rect = pygame.Rect(i * frame_width, 0, frame_width, frame_height)
+        frame = sprite_sheet.subsurface(frame_rect).copy()
+        frames.append(frame)
+    return frames
