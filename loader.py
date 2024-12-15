@@ -1,5 +1,4 @@
 import pygame
-from src.item_factory import ItemFactory
 def load_enemy_images():
     images = [
         pygame.image.load("assets/images/enemies/Icon2.png").convert_alpha(),
@@ -30,8 +29,6 @@ def load_projectile_sprite():
     sprite_sheet = pygame.image.load("assets/images/player/Charge.png").convert_alpha()
     return sprite_sheet
 
-def load_item_factory():
-    return ItemFactory()
 
 def load_player_animations():
     animations = {}
