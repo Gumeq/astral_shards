@@ -134,7 +134,7 @@ class Player:
         """Heal the player."""
         self.hp = min(self.hp + amount, self.max_hp)  # Ensure HP doesn't go above max HP
         self.world.add_floating_text(
-                    text=str(damage),
+                    text=str(amount),
                     target = self,
                     offset=(0, -20),  # Slightly above the player
                     color=(0, 255, 0),  # Red for damage
