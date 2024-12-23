@@ -39,6 +39,7 @@ class UI:
             f"Speed: {player.movement_speed}",
             f"Ability Power: {player.ability_power}",
             f"Attack Speed: {player.attack_speed}",
+            f"Attack Range: {player.attack_range}",
             f"Luck: {player.luck}",
             f"Astral Shards: {player.astral_shards}",
         ]
