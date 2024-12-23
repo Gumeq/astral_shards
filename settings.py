@@ -13,6 +13,15 @@ ORANGE = (255,165,0)
 PURPLE = (128,0,128)
 BACKGROUND_COLOR = (0,255,0)
 
+from enum import Enum
+
+class GameState(Enum):
+    START_SCREEN = 1
+    PLAYING = 2
+    PAUSED = 3
+    GAME_OVER = 4
+
+
 ENEMY_TYPES = {
     "goblin": {
         "image": "assets/enemies/goblin.png",

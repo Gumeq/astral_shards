@@ -4,22 +4,26 @@ import random
 from src.enemy import Enemy  # Assumes you have an Enemy class
 
 class WaveManager:
-    def __init__(self, wave_file, world, enemy_data, enemy_manager, camera):
+    def __init__(self, wave_file, world, enemy_data, enemy_manager, camera, timer):
         """
         Initialize the Wave Manager.
         :param wave_file: Path to the JSON file containing wave data.
         :param world: The World instance to spawn enemies into.
         :param enemy_data: Enemy data loaded from an enemy JSON file.
         """
+        self.wave_file = wave_file
         self.world = world
         self.camera = camera
         self.enemy_data = enemy_data  # Reference to enemy properties
         self.current_wave = None
-        self.waves = self.load_waves(wave_file)
+        self.waves = self.load_waves(self.wave_file)
         self.wave_index = 0
         self.start_time = None
         self.enemies_spawned = 0
         self.enemy_manager = enemy_manager
+        
+        
+        self.timer = timer
 
     def load_waves(self, wave_file):
         """Load wave configurations from a JSON file."""
@@ -31,20 +35,39 @@ class WaveManager:
         self.wave_index = wave_index
         if wave_index < len(self.waves):
             self.current_wave = self.waves[wave_index]
-            self.start_time = pygame.time.get_ticks() / 1000  # Start time in seconds
+            # wave_start_offset = total game time so far
+            self.wave_start_offset = self.timer.get_time()
             self.enemies_spawned = 0
             print(f"Wave {self.current_wave['wave_number']} started.")
         else:
             self.current_wave = None
             print("No more waves.")
 
+
+    def reset(self):
+        """
+        Reset everything needed to start from the first wave again.
+        """
+        self.waves = self.load_waves(self.wave_file)
+        self.wave_index = 0
+        self.current_wave = None
+        self.enemies_spawned = 0
+        self.start_time = None
+        self.wave_start_offset = 0
+
+        # Optionally start the first wave right away,
+        # or let the game call start_wave(0) when gameplay begins
+        # self.start_wave(0
+
     def update(self):
-        """Update wave and spawn enemies."""
         if not self.current_wave:
             return
 
-        current_time = pygame.time.get_ticks() / 1000
-        elapsed_time = current_time - self.start_time
+        # total game time so far
+        current_game_time = self.timer.get_time()
+
+        # how many seconds have passed *since the wave started*
+        elapsed_time = current_game_time - self.wave_start_offset
 
         # End the wave if its duration has elapsed
         if elapsed_time >= self.current_wave["duration"]:
@@ -53,6 +76,9 @@ class WaveManager:
 
         # Spawn enemies based on spawn rate
         spawn_interval = 1 / self.current_wave["spawn_rate"]
+
+        # The condition: self.enemies_spawned * spawn_interval <= elapsed_time
+        # means "can I spawn the next enemy?"
         while self.enemies_spawned * spawn_interval <= elapsed_time:
             self.spawn_enemy()
             self.enemies_spawned += 1

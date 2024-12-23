@@ -33,20 +33,21 @@ class AnimationController:
 
 
 class Player:
-    def __init__(self, x, y, animations, world):
+    def __init__(self, x, y, animations, world, state_manager):
         self.world = world
+        self.state_manager = state_manager
         self.position = pygame.math.Vector2(x, y)
         self.movement_speed = 5
         self.ability_power = 20
         self.hp = 100
-        self.max_hp = 150
+        self.max_hp = 100
         self.luck = 1
         self.astral_shards = 50
         self.level = 1
         self.attack_speed = 1
         self.attack_range = 1
         self.invincible = False
-        self.invincibility_duration = 1  # Seconds
+        self.invincibility_duration = 0.2  # Seconds
         self.last_hit_time = 0
         self.inventory = Inventory()
         self.facing_right = True  # Default facing direction
@@ -129,6 +130,7 @@ class Player:
     def die(self):
         """Handle player death."""
         print("Player has died.")
+        self.state_manager.switch_state("end")
 
     def heal(self, amount):
         """Heal the player."""

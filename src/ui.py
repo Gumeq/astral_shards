@@ -5,6 +5,8 @@ class UI:
     def __init__(self, font , large_font=None):
         self.font = font
         self.large_font = large_font or pygame.font.Font(None, 48)  # Default to size 48 if not provided
+        self.elapsed_pause_time = 0  # Total time the game was paused
+        self.pause_start_time = None  # When the game was paused
 
     def draw_inventory(self, screen, inventory):
         """Draw the inventory with item images, overlays, and countdowns."""
@@ -59,20 +61,17 @@ class UI:
         text = self.font.render(f"{int(shards)}", True, (255, 255, 255))
         screen.blit(text, (x, y))
 
-    def draw_game_time(self, screen, start_time, game_paused):
+    def draw_game_time(self, screen, timer):
         """Draw the elapsed game time at the top center of the screen."""
-        if game_paused:
-            return
-        
-        current_time = pygame.time.get_ticks() / 1000  # Get current time in seconds
-        elapsed_time = int(current_time - start_time)  # Elapsed time in seconds
+        # timer.get_time() returns total unpaused seconds
+        total_seconds = int(timer.get_time())
 
         # Format time as MM:SS
-        minutes = elapsed_time // 60
-        seconds = elapsed_time % 60
-        time_text = f"{minutes:02}:{seconds:02}"  # Example: 02:35
+        minutes = total_seconds // 60
+        seconds = total_seconds % 60
+        time_text = f"{minutes:02}:{seconds:02}"  # e.g. "02:35"
 
         # Render and position the text
         text_surface = self.large_font.render(time_text, True, (255, 255, 255))
-        text_rect = text_surface.get_rect(center=(WIDTH // 2, 40))  # Top center of the screen
-        screen.blit(text_surface, text_rect.topleft)
+        text_rect = text_surface.get_rect(center=(WIDTH // 2, 40))  # top center
+        screen.blit(text_surface, text_rect)
