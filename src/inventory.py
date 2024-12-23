@@ -1,21 +1,16 @@
 class Inventory:
     def __init__(self):
-        self.equipped = {
-            "weapon": None,
-            "armor": None
-        }
-        self.consumables = [None] * 5  # 5 consumable slots
+        self.equipped = {"weapon": None, "armor": None}
+        self.consumables = [None] * 5
 
     def equip(self, slot, item):
         if slot in self.equipped:
             self.equipped[slot] = item
 
     def has_consumable_space(self):
-        """Check if there's at least one empty slot for a consumable."""
         return any(slot is None for slot in self.consumables)
 
     def add_consumable(self, consumable):
-        """Add a consumable to the first available slot."""
         for i in range(len(self.consumables)):
             if self.consumables[i] is None:
                 self.consumables[i] = consumable

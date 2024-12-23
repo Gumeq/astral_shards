@@ -9,7 +9,6 @@ class SpriteSheet:
         self._split_sheet()
 
     def _split_sheet(self):
-        """Split the sprite sheet into individual frames."""
         sheet_width, sheet_height = self.sprite_sheet.get_size()
         for y in range(0, sheet_height, self.frame_height):
             for x in range(0, sheet_width, self.frame_width):
@@ -17,5 +16,4 @@ class SpriteSheet:
                 self.frames.append(frame)
 
     def get_frame(self, index):
-        """Get a specific frame by index."""
-        return self.frames[index % len(self.frames)]  # Loop around if index exceeds frame count
+        return self.frames[index % len(self.frames)]

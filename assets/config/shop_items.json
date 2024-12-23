@@ -44,7 +44,7 @@
 			"name": "Luck Increase",
 			"type": "buff",
 			"effect": "luck",
-			"magnitude": 2,
+			"magnitude": 3,
 			"duration": 0,
 			"cost": 5
 		},
@@ -59,6 +59,12 @@
 			"type": "consumable",
 			"consumable_name": "speed_potion",
 			"cost": 8
+		},
+		{
+			"name": "Ability Potion",
+			"type": "consumable",
+			"consumable_name": "ability_potion",
+			"cost": 15
 		}
 	]
 }

@@ -1,34 +1,8 @@
 import pygame
-def load_enemy_images():
-    images = [
-        pygame.image.load("assets/images/enemies/Icon2.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon3.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon4.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon5.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon6.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon7.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon8.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon9.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon10.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon11.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon12.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon13.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon14.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon15.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon16.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon17.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon18.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon19.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon20.png").convert_alpha(),
-        pygame.image.load("assets/images/enemies/Icon21.png").convert_alpha(),
-    ]
-    images = [pygame.transform.scale(img, (100, 100)) for img in images]
-    return images
 
 def load_projectile_sprite():
     sprite_sheet = pygame.image.load("assets/images/player/Charge.png").convert_alpha()
     return sprite_sheet
-
 
 def load_player_animations():
     animations = {}

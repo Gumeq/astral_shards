@@ -26,5 +26,12 @@
 		"magnitude": 5,
 		"duration": 60,
 		"image": "assets/images/items/Icon7.png"
+	},
+	"ability_potion": {
+		"name": "Ability Potion",
+		"effect": "ability_power",
+		"magnitude": 100,
+		"duration": 10,
+		"image": "assets/images/items/Icon7.png"
 	}
 }
