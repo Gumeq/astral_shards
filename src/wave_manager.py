@@ -1,7 +1,7 @@
 import pygame
 import json
 import random
-from src.enemy import Enemy
+from src.enemy import Enemy, Demon
 
 class WaveManager:
     def __init__(self, wave_file, world, enemy_data, enemy_manager, camera, timer):
@@ -80,8 +80,11 @@ class WaveManager:
 
                     x = max(0, min(x, self.world.width))
                     y = max(0, min(y, self.world.height))
-
-                    enemy = Enemy(x, y, enemy_properties, self.world)
+                    
+                    if enemy_type == "demon":
+                        enemy = Demon(x,y,enemy_properties,self.world)
+                    else:   
+                        enemy = Enemy(x, y, enemy_properties, self.world)
                     self.enemy_manager.enemies.append(enemy)
                     enemy_group["count"] -= 1
                     print(f"Spawned {enemy_type} at ({x}, {y}).")

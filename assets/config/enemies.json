@@ -53,7 +53,10 @@
 		"damage": 25,
 		"movement_speed": 0.5,
 		"size": 7,
-		"astral_shards_drop": 1000
+		"astral_shards_drop": 50,
+		"shoot_cooldown": 5,
+		"projectile_speed": 10,
+		"projectile_range": 2000
 	},
 	"magma_demon": {
 		"image": "assets/images/enemies/Icon41.png",

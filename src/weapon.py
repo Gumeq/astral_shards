@@ -53,14 +53,14 @@ class Projectile:
         self.image = pygame.transform.rotate(self.original_image, -self.angle)
         self.rect = self.image.get_rect(center=self.position)
 
-    def update(self, enemies):
+    def update(self, targets):
         self.position += self.direction * self.speed
         self.rect.center = self.position
         if self.position.distance_to(self.start_position) > self.range:
             return False
-        for enemy in enemies:
-            if self.rect.colliderect(enemy.rect):
-                enemy.take_damage(self.damage)
+        for target in targets:
+            if self.rect.colliderect(target.rect):
+                target.take_damage(self.damage)
                 return False
         return True
 

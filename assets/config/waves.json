@@ -53,18 +53,10 @@
 		]
 	},
 	{
-		"wave_number": 4,
+		"wave_number": 6,
 		"duration": 120,
 		"spawn_rate": 1,
-		"enemies": [
-			{ "type": "demon", "count": 1 },
-			{ "type": "slime", "count": 5 },
-			{ "type": "fire_skull", "count": 5 },
-			{ "type": "snake", "count": 10 },
-			{ "type": "fire_skull", "count": 5 },
-			{ "type": "slime", "count": 5 },
-			{ "type": "snake", "count": 10 }
-		],
+		"enemies": [{ "type": "demon", "count": 1 }],
 		"is_boss_wave": true
 	}
 ]
