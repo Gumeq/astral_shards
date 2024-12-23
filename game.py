@@ -66,7 +66,7 @@ class Game:
         self.enemy_data = load_enemy_data("assets/config/enemies.json")
         self.enemy_manager = EnemyManager(self.enemy_data, WORLD_WIDTH, WORLD_HEIGHT, self.world)
         self.wave_manager = WaveManager("assets/config/waves.json", self.world, self.enemy_data, self.enemy_manager, self.camera, self.timer)
-        self.wave_manager.start_wave(6)
+        self.wave_manager.start_wave(0)
         self.weapon_manager = WeaponManager("assets/config/weapons.json", self.player)
         basic_wand = self.weapon_manager.weapon_data["basic_wand"]
         self.weapon_manager.equip_weapon("basic_wand")
