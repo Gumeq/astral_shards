@@ -1,7 +1,7 @@
 import pygame
 
 class EndScreen:
-    def __init__(self, state_manager, font, game):
+    def __init__(self, state_manager, font, game, player):
         self.state_manager = state_manager
         self.font = font
         self.game = game

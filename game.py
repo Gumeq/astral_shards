@@ -54,7 +54,7 @@ class Game:
         self.state_manager.register_state("gameplay", GamePlay(self, self.timer))
         self.state_manager.register_state("paused", PausedState(self.state_manager, self.font, self.timer, self))
         self.state_manager.register_state("shop", ShopState(self))
-        self.state_manager.register_state("end", EndScreen(self.state_manager, self.font, self))
+        self.state_manager.register_state("end", EndScreen(self.state_manager, self.font, self, self.player))
         self.state_manager.switch_state("start")
 
     def initialize_game_objects(self):
@@ -102,7 +102,7 @@ class Game:
                 self.shop.handle_input(event)
         else:
             self.player.update(keys)
-            if mouse_buttons[0]:
+            if True:
                 world_mouse_position = pygame.math.Vector2(mouse_position) + self.camera.offset
                 self.weapon_manager.fire_weapon(self.player.position, world_mouse_position)
 

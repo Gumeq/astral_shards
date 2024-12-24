@@ -2,51 +2,45 @@
 	"items": [
 		{
 			"name": "Ability Power Boost",
-			"type": "buff",
 			"effect": "ability_power",
-			"magnitude": 5,
-			"duration": 0,
+			"magnitude": 3,
+			"type": "buff",
 			"cost": 10
 		},
 		{
 			"name": "Attack Speed Boost",
-			"type": "buff",
 			"effect": "attack_speed",
 			"magnitude": 1.2,
-			"duration": 0,
+			"type": "buff",
 			"cost": 15
 		},
 		{
 			"name": "Range Boost",
-			"type": "buff",
 			"effect": "attack_range",
-			"magnitude": 1.2,
-			"duration": 0,
+			"magnitude": 1.15,
+			"type": "buff",
 			"cost": 20
 		},
 		{
 			"name": "Speed Boost",
-			"type": "buff",
 			"effect": "movement_speed",
-			"magnitude": 1,
-			"duration": 0,
+			"magnitude": 0.5,
+			"type": "buff",
 			"cost": 10
 		},
 		{
 			"name": "Max HP Increase",
-			"type": "buff",
 			"effect": "max_hp",
-			"magnitude": 10,
-			"duration": 0,
+			"magnitude": 15,
+			"type": "buff",
 			"cost": 20
 		},
 		{
 			"name": "Luck Increase",
-			"type": "buff",
 			"effect": "luck",
-			"magnitude": 3,
-			"duration": 0,
-			"cost": 7
+			"magnitude": 2,
+			"type": "buff",
+			"cost": 10
 		},
 		{
 			"name": "Healing Potion",

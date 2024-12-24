@@ -1,7 +1,7 @@
 {
 	"bush": {
 		"image": "assets/images/enemies/Icon23.png",
-		"hp": 50,
+		"hp": 40,
 		"damage": 10,
 		"movement_speed": 1.0,
 		"size": 3,
@@ -17,7 +17,7 @@
 	},
 	"fire_skull": {
 		"image": "assets/images/enemies/Icon16.png",
-		"hp": 20,
+		"hp": 25,
 		"damage": 15,
 		"movement_speed": 10,
 		"size": 2.5,
@@ -49,7 +49,7 @@
 	},
 	"demon": {
 		"image": "assets/images/enemies/Icon39.png",
-		"hp": 10000,
+		"hp": 5000,
 		"damage": 25,
 		"movement_speed": 0.5,
 		"size": 7,
@@ -60,10 +60,146 @@
 	},
 	"magma_demon": {
 		"image": "assets/images/enemies/Icon41.png",
+		"hp": 8000,
+		"damage": 50,
+		"movement_speed": 2,
+		"size": 6,
+		"astral_shards_drop": 200,
+		"shoot_cooldown": 10,
+		"projectile_speed": 20,
+		"projectile_range": 2000
+	},
+
+	"bat": {
+		"image": "assets/images/enemies/Icon11.png",
+		"hp": 15,
+		"damage": 5,
+		"movement_speed": 3.5,
+		"size": 1,
+		"astral_shards_drop": 1
+	},
+	"scorpion": {
+		"image": "assets/images/enemies/Icon12.png",
+		"hp": 150,
+		"damage": 20,
+		"movement_speed": 1.5,
+		"size": 2,
+		"astral_shards_drop": 3
+	},
+	"rock_golem": {
+		"image": "assets/images/enemies/Icon15.png",
+		"hp": 700,
+		"damage": 50,
+		"movement_speed": 0.75,
+		"size": 5,
+		"astral_shards_drop": 10
+	},
+	"werewolf": {
+		"image": "assets/images/enemies/Icon27.png",
+		"hp": 400,
+		"damage": 40,
+		"movement_speed": 3,
+		"size": 3,
+		"astral_shards_drop": 8
+	},
+	"dark_phoenix": {
+		"image": "assets/images/enemies/Icon30.png",
+		"hp": 2000,
+		"damage": 60,
+		"movement_speed": 4,
+		"size": 6,
+		"astral_shards_drop": 25
+	},
+	"necromancer": {
+		"image": "assets/images/enemies/Icon44.png",
+		"hp": 800,
+		"damage": 30,
+		"movement_speed": 1,
+		"size": 3,
+		"astral_shards_drop": 15
+	},
+
+	"skeleton_king": {
+		"image": "assets/images/enemies/Icon34.png",
+		"hp": 2000,
+		"damage": 80,
+		"movement_speed": 1.0,
+		"size": 5,
+		"astral_shards_drop": 30
+	},
+	"vampire": {
+		"image": "assets/images/enemies/Icon46.png",
+		"hp": 500,
+		"damage": 35,
+		"movement_speed": 3.5,
+		"size": 3,
+		"astral_shards_drop": 15
+	},
+	"frost_wolf": {
+		"image": "assets/images/enemies/Icon29.png",
+		"hp": 300,
+		"damage": 25,
+		"movement_speed": 4.0,
+		"size": 2,
+		"astral_shards_drop": 8
+	},
+	"ghost": {
+		"image": "assets/images/enemies/Icon21.png",
 		"hp": 100,
-		"damage": 15,
-		"movement_speed": 2.5,
-		"size": 2.5,
-		"astral_shards_drop": 2
+		"damage": 10,
+		"movement_speed": 2.0,
+		"size": 2,
+		"astral_shards_drop": 5
+	},
+	"troll": {
+		"image": "assets/images/enemies/Icon6.png",
+		"hp": 700,
+		"damage": 45,
+		"movement_speed": 1.2,
+		"size": 4,
+		"astral_shards_drop": 12
+	},
+	"fallen_knight": {
+		"image": "assets/images/enemies/Icon22.png",
+		"hp": 600,
+		"damage": 40,
+		"movement_speed": 2.0,
+		"size": 3,
+		"astral_shards_drop": 10
+	},
+	"electric_eel": {
+		"image": "assets/images/enemies/Icon28.png",
+		"hp": 150,
+		"damage": 20,
+		"movement_speed": 3.0,
+		"size": 1.5,
+		"astral_shards_drop": 4
+	},
+	"hive_mind": {
+		"image": "assets/images/enemies/Icon37.png",
+		"hp": 1200,
+		"damage": 20,
+		"movement_speed": 0.8,
+		"size": 4,
+		"astral_shards_drop": 20
+	},
+	"storm_giant": {
+		"image": "assets/images/enemies/Icon48.png",
+		"hp": 3500,
+		"damage": 100,
+		"movement_speed": 1.0,
+		"size": 8,
+		"astral_shards_drop": 50
+	},
+	"lunar_mage": {
+		"image": "assets/images/enemies/Icon32.png",
+		"hp": 800,
+		"damage": 55,
+		"movement_speed": 2.0,
+		"size": 3,
+		"astral_shards_drop": 20,
+		"shoot_cooldown": 3,
+		"projectile_speed": 7,
+		"projectile_range": 1000
 	}
 }

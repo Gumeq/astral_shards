@@ -34,11 +34,12 @@ class Player:
         self.position = pygame.math.Vector2(x, y)
         
         # Stats
-        self.movement_speed = 5
-        self.ability_power = 20
-        self.hp = self.max_hp = 100
+        self.movement_speed = 3
+        self.ability_power = 15
+        self.hp = 100
+        self.max_hp = 100
         self.luck = 1
-        self.astral_shards = 500
+        self.astral_shards = 100
         self.level = 1
         self.attack_speed = 1
         self.attack_range = 1

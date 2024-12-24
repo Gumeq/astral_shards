@@ -14,7 +14,7 @@
 	{
 		"wave_number": 2,
 		"duration": 30,
-		"spawn_rate": 2,
+		"spawn_rate": 1.5,
 		"enemies": [
 			{ "type": "mouse", "count": 10 },
 			{ "type": "bush", "count": 10 }
@@ -23,7 +23,7 @@
 	{
 		"wave_number": 3,
 		"duration": 30,
-		"spawn_rate": 0.2,
+		"spawn_rate": 1,
 		"enemies": [
 			{ "type": "fire_skull", "count": 10 },
 			{ "type": "mouse", "count": 20 },
@@ -54,9 +54,145 @@
 	},
 	{
 		"wave_number": 6,
-		"duration": 120,
+		"duration": 60,
 		"spawn_rate": 1,
 		"enemies": [{ "type": "demon", "count": 1 }],
+		"is_boss_wave": true
+	},
+	{
+		"wave_number": 7,
+		"duration": 60,
+		"spawn_rate": 1.2,
+		"enemies": [
+			{ "type": "slime", "count": 10 },
+			{ "type": "fire_skull", "count": 10 },
+			{ "type": "snake", "count": 10 },
+			{ "type": "fire_skull", "count": 10 },
+			{ "type": "snake", "count": 5 }
+		]
+	},
+	{
+		"wave_number": 8,
+		"duration": 60,
+		"spawn_rate": 1,
+		"enemies": [
+			{ "type": "demon", "count": 1 },
+			{ "type": "fire_skull", "count": 5 },
+			{ "type": "snake", "count": 5 },
+			{ "type": "fire_skull", "count": 5 },
+			{ "type": "snake", "count": 5 }
+		]
+	},
+	{
+		"wave_number": 9,
+		"duration": 45,
+		"spawn_rate": 1.5,
+		"enemies": [
+			{ "type": "spider", "count": 10 },
+			{ "type": "scorpion", "count": 5 },
+			{ "type": "bat", "count": 5 }
+		]
+	},
+	{
+		"wave_number": 10,
+		"duration": 60,
+		"spawn_rate": 1,
+		"enemies": [{ "type": "magma_demon", "count": 1 }],
+		"is_boss_wave": true
+	},
+	{
+		"wave_number": 11,
+		"duration": 45,
+		"spawn_rate": 1.5,
+		"enemies": [
+			{ "type": "scorpion", "count": 10 },
+			{ "type": "ghost", "count": 10 },
+			{ "type": "bat", "count": 10 },
+			{ "type": "spider", "count": 5 }
+		]
+	},
+	{
+		"wave_number": 12,
+		"duration": 60,
+		"spawn_rate": 1.8,
+		"enemies": [
+			{ "type": "werewolf", "count": 5 },
+			{ "type": "rock_golem", "count": 2 },
+			{ "type": "vampire", "count": 5 },
+			{ "type": "frost_wolf", "count": 5 }
+		]
+	},
+	{
+		"wave_number": 13,
+		"duration": 60,
+		"spawn_rate": 1.5,
+		"enemies": [
+			{ "type": "dark_phoenix", "count": 2 },
+			{ "type": "slime", "count": 10 },
+			{ "type": "necromancer", "count": 2 },
+			{ "type": "snake", "count": 10 }
+		]
+	},
+	{
+		"wave_number": 14,
+		"duration": 60,
+		"spawn_rate": 1.2,
+		"enemies": [
+			{ "type": "necromancer", "count": 5 },
+			{ "type": "vampire", "count": 5 },
+			{ "type": "spider", "count": 10 },
+			{ "type": "scorpion", "count": 10 }
+		]
+	},
+	{
+		"wave_number": 15,
+		"duration": 90,
+		"spawn_rate": 1,
+		"enemies": [{ "type": "skeleton_king", "count": 1 }],
+		"is_boss_wave": true
+	},
+	{
+		"wave_number": 16,
+		"duration": 60,
+		"spawn_rate": 2,
+		"enemies": [
+			{ "type": "hive_mind", "count": 2 },
+			{ "type": "troll", "count": 5 },
+			{ "type": "fallen_knight", "count": 5 },
+			{ "type": "ghost", "count": 10 }
+		]
+	},
+	{
+		"wave_number": 17,
+		"duration": 60,
+		"spawn_rate": 1.5,
+		"enemies": [
+			{ "type": "electric_eel", "count": 10 },
+			{ "type": "frost_wolf", "count": 10 },
+			{ "type": "vampire", "count": 5 },
+			{ "type": "dark_phoenix", "count": 2 }
+		]
+	},
+	{
+		"wave_number": 18,
+		"duration": 90,
+		"spawn_rate": 1.8,
+		"enemies": [
+			{ "type": "rock_golem", "count": 3 },
+			{ "type": "slime", "count": 10 },
+			{ "type": "werewolf", "count": 5 },
+			{ "type": "necromancer", "count": 3 },
+			{ "type": "hive_mind", "count": 2 }
+		]
+	},
+	{
+		"wave_number": 19,
+		"duration": 120,
+		"spawn_rate": 1,
+		"enemies": [
+			{ "type": "storm_giant", "count": 1 },
+			{ "type": "magma_demon", "count": 2 }
+		],
 		"is_boss_wave": true
 	}
 ]
