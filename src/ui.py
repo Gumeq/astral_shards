@@ -36,12 +36,12 @@ class UI:
     def draw_stats(self, screen, player):
         stats = [
             f"HP: {player.hp}/{player.max_hp}",
-            f"Speed: {player.movement_speed}",
-            f"Ability Power: {player.ability_power}",
-            f"Attack Speed: {player.attack_speed}",
-            f"Attack Range: {player.attack_range}",
-            f"Luck: {player.luck}",
-            f"Astral Shards: {player.astral_shards}",
+            f"Speed: {player.movement_speed:.2f}",
+            f"Ability Power: {player.ability_power:.2f}",
+            f"Attack Speed: {player.attack_speed:.2f}",
+            f"Attack Range: {player.attack_range:.2f}",
+            f"Luck: {player.luck:.2f}",
+            f"Astral Shards: {player.astral_shards:.2f}",
         ]
         x, y = 20, 150
         for i, stat in enumerate(stats):
