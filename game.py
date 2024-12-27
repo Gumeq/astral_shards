@@ -48,7 +48,7 @@ class Game:
         self.running = True
         self.timer = Timer()
         self.state_manager = GameStateManager()
-        self.font = pygame.font.Font(None, 24)
+        self.font = pygame.font.Font("assets/fonts/dogicapixel.ttf", 16)
         self.initialize_game_objects()
         self.state_manager.register_state("start", StartScreen(self.font, self.state_manager))
         self.state_manager.register_state("gameplay", GamePlay(self, self.timer))

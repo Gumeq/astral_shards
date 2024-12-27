@@ -68,9 +68,9 @@ class World:
     def update(self):
         for obj in self.dynamic_objects:
             obj.update()
-        self.floating_texts = [text for text in self.floating_texts if not text.update()]
         for enemy in self.enemies:
             enemy.update()
+        self.floating_texts = [text for text in self.floating_texts if not text.update()]
 
     def get_camera_offset(self, player_rect, screen_width, screen_height):
         offset_x = max(0, min(player_rect.centerx - screen_width // 2, self.width - screen_width))

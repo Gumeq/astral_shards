@@ -1,7 +1,7 @@
 class Inventory:
     def __init__(self):
         self.equipped = {"weapon": None, "armor": None}
-        self.consumables = [None] * 5
+        self.consumables = [None] * 10
 
     def equip(self, slot, item):
         if slot in self.equipped:

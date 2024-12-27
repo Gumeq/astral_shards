@@ -1,11 +1,13 @@
 import pygame
+import random
+
 from settings import *
 from src.healthbar import HealthBar
 from src.inventory import Inventory
-import random
+
 
 class AnimationController:
-    def __init__(self, animations, animation_speed=10):
+    def __init__(self, animations, animation_speed=5):
         self.animations = animations
         self.current_animation = "Idle"
         self.current_frame = 0
@@ -26,6 +28,7 @@ class AnimationController:
     def get_current_frame(self, facing_right=True):
         frame = self.animations[self.current_animation][self.current_frame]
         return pygame.transform.flip(frame, True, False) if not facing_right else frame
+
 
 class Player:
     def __init__(self, x, y, animations, world, state_manager):
@@ -57,30 +60,31 @@ class Player:
         self.frame_width = first_animation_frames[0].get_width()
         self.frame_height = first_animation_frames[0].get_height()
         
+                # Health bar
+        self.health_bar = HealthBar(50, 8, (255, 255, 255), (0, 255, 0), (128, 128, 128))
+        
         # ----- HITBOX SCALING -----
-        # Change this scale to make the collision box smaller/larger.
-        HITBOX_SCALE = 1  # 0.6 = 60% of sprite size
-        
+        # For top-down: center the hitbox relative to the sprite.
+        HITBOX_SCALE = 0.5  # Adjust as needed (0.5, 0.7, etc.)
+        vertical_offset = -500  # Shift the hitbox up/down if needed.
+
         # Calculate the smaller hitbox dimensions
-        self.hitbox_width = int((self.frame_width * HITBOX_SCALE)/2)
-        self.hitbox_height = int((self.frame_height * HITBOX_SCALE)/2)
+        self.hitbox_width = int(self.frame_width * HITBOX_SCALE * 0.5)
+        self.hitbox_height = int(self.frame_height * 0.5 )
         
-        # Center the smaller hitbox on the player's position
+        # Center the rect on the player's position
         self.rect = pygame.Rect(
-            self.position.x - self.hitbox_width // 2,
-            self.position.y + 200,
+            0 ,
+            0 ,
             self.hitbox_width,
             self.hitbox_height
         )
-        
-        # Health bar
-        self.health_bar = HealthBar(50, 8, (255, 255, 255), (0, 255, 0), (128, 128, 128))
         
         # Buffs dictionary
         self.buffs = {}
 
         # DEBUG: Toggle this to True if you want to visualize the hitbox
-        self.debug_hitbox = False
+        self.debug_hitbox = True
 
     def draw(self, screen, camera):
         """
@@ -102,11 +106,17 @@ class Player:
 
         # Draw health bar above the sprite
         health_bar_position = (screen_position.x - 25, screen_position.y - 40)
-        self.health_bar.draw(screen, health_bar_position, self.hp, self.max_hp)
+        # self.health_bar.draw(screen, health_bar_position, self.hp, self.max_hp)
 
     def update(self, keys):
         self.move(keys)
         self.animation_controller.update_animation()
+        self.update_buffs()
+
+        # If invincible, check if invincibility has worn off
+        current_time = pygame.time.get_ticks() / 1000
+        if self.invincible and (current_time - self.last_hit_time) > self.invincibility_duration:
+            self.invincible = False
 
     def move(self, keys):
         # Decide on animation
@@ -131,15 +141,15 @@ class Player:
         self.position.x = max(self.hitbox_width // 2, min(self.position.x, WORLD_WIDTH - self.hitbox_width // 2))
         self.position.y = max(self.hitbox_height // 2, min(self.position.y, WORLD_HEIGHT - self.hitbox_height // 2))
 
-        # Update rect (the smaller hitbox)
-        self.rect.topleft = (
-            self.position.x - self.hitbox_width // 2,
-            self.position.y - self.hitbox_height // 2
-        )
+        # Update rect to remain centered on the player
+        # If you want an offset, add it to the Y position.
+        self.rect.x = self.position.x - self.hitbox_width // 2
+        self.rect.y = self.position.y - self.hitbox_height // 2
 
     def take_damage(self, damage):
         current_time = pygame.time.get_ticks() / 1000
-        if not self.invincible or current_time - self.last_hit_time > self.invincibility_duration:
+        # Only take damage if not invincible or if invincibility has expired
+        if not self.invincible or (current_time - self.last_hit_time) > self.invincibility_duration:
             self.hp -= damage
             self.last_hit_time = current_time
             self.invincible = True
@@ -166,14 +176,16 @@ class Player:
         )
 
     def add_buff(self, effect, magnitude, duration):
-        self.buffs[effect] = {
-            "magnitude": magnitude,
-            "end_time": pygame.time.get_ticks() / 1000 + duration
-        }
-        # Apply the buff now
+        end_time = pygame.time.get_ticks() / 1000 + duration
+        self.buffs[effect] = {"magnitude": magnitude, "end_time": end_time}
+
+        # Apply the buff immediately
         if effect == "movement_speed":
             self.movement_speed += magnitude
         elif effect == "damage":
+            # If you want a separate damage stat, define it in __init__ first
+            if not hasattr(self, "damage"):
+                self.damage = 0
             self.damage += magnitude
         elif effect == "luck":
             self.luck += magnitude
@@ -182,17 +194,22 @@ class Player:
 
     def update_buffs(self):
         current_time = pygame.time.get_ticks() / 1000
-        expired_buffs = [effect for effect, data in self.buffs.items() if data["end_time"] <= current_time]
+        expired_buffs = []
+        for effect, data in self.buffs.items():
+            if data["end_time"] <= current_time:
+                expired_buffs.append(effect)
+
+        # Remove expired buffs
         for effect in expired_buffs:
             magnitude = self.buffs[effect]["magnitude"]
             if effect == "movement_speed":
                 self.movement_speed -= magnitude
             elif effect == "damage":
                 self.damage -= magnitude
-            elif effect == "ability_power":
-                self.ability_power -= magnitude
             elif effect == "luck":
                 self.luck -= magnitude
+            elif effect == "ability_power":
+                self.ability_power -= magnitude
             del self.buffs[effect]
 
     def collect_astral_shard(self):

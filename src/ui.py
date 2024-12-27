@@ -4,14 +4,16 @@ from settings import *
 class UI:
     def __init__(self, font, large_font=None):
         self.font = font
-        self.large_font = large_font or pygame.font.Font(None, 48)
+        self.large_font = large_font or pygame.font.Font("assets/fonts/dogicapixel.ttf", 32)
+        self.small_font = pygame.font.Font("assets/fonts/dogicapixel.ttf", 12)
         self.elapsed_pause_time = 0
         self.pause_start_time = None
 
     def draw_inventory(self, screen, inventory):
-        x, y = 20, 20
         slot_size = 50
         padding = 10
+        
+        x, y = WIDTH // 2 - 5*slot_size - 5*padding , HEIGHT - slot_size - padding*2
 
         for i, consumable in enumerate(inventory.consumables):
             slot_x = x + i * (slot_size + padding)
@@ -27,7 +29,7 @@ class UI:
                     dark_overlay = pygame.Surface((slot_size, slot_size), pygame.SRCALPHA)
                     dark_overlay.fill((0, 0, 0, 150))
                     screen.blit(dark_overlay, (slot_x, y))
-                    countdown_text = self.font.render(f"{int(time_remaining)}", True, (255, 255, 255))
+                    countdown_text = self.font.render(f"{int(time_remaining)}", False, (255, 255, 255))
                     text_rect = countdown_text.get_rect(center=(slot_x + slot_size // 2, y + slot_size // 2))
                     screen.blit(countdown_text, text_rect.topleft)
 
@@ -41,17 +43,17 @@ class UI:
             f"Attack Speed: {player.attack_speed:.2f}",
             f"Attack Range: {player.attack_range:.2f}",
             f"Luck: {player.luck:.2f}",
-            f"Astral Shards: {player.astral_shards:.2f}",
+            # f"Astral Shards: {player.astral_shards}",
         ]
-        x, y = 20, 150
+        x, y = 20, HEIGHT - 150
         for i, stat in enumerate(stats):
-            text = self.font.render(stat, True, (255, 255, 255))
+            text = self.small_font.render(stat, False, (255, 255, 255))
             screen.blit(text, (x, y + i * 20))
 
     def draw_shards(self, screen, player):
         shards = player.astral_shards
-        x, y = WIDTH - 40, 20
-        text = self.font.render(f"{int(shards)}", True, (255, 255, 255))
+        x, y = WIDTH // 2 + 250 + 50 +20 , HEIGHT - 50
+        text = self.font.render(f"{int(shards)}", False, (255, 255, 255))
         screen.blit(text, (x, y))
 
     def draw_game_time(self, screen, timer):

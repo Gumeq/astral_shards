@@ -5,7 +5,7 @@ import math
 class StartScreen:
     def __init__(self, font, state_manager):
         self.font = font
-        self.large_font = pygame.font.Font(None, 48)
+        self.large_font = pygame.font.Font("assets/fonts/dogicabold.ttf", 32)
         self.running = True
         self.start_button_rect = None
         self.start_time = time.time()
