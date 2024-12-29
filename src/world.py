@@ -1,12 +1,14 @@
 import pygame
 from src.floating_text import FloatingText
-from src.enemy import EnemyManager, load_enemy_data, spawn_enemy
+from src.enemy import EnemyManager, load_enemy_data, spawn_enemy, Demon
 from settings import *
 
 class World:
-    def __init__(self, width, height):
+    def __init__(self, width, height, player, timer):
         self.width = width
         self.height = height
+        self.player = player
+        self.timer = timer
         self.surface = pygame.Surface((width, height))
         self.tile_sprite = pygame.image.load("assets/images/backgrounds/grass_512x512.png").convert()
         self.objects = []
@@ -14,6 +16,7 @@ class World:
         self.enemies = []
         self.astral_shards = []
         self.floating_texts = []
+        self.projectiles = []
         self.generate_tiled_background()
 
     def add_enemy(self, enemy):
@@ -69,7 +72,17 @@ class World:
         for obj in self.dynamic_objects:
             obj.update()
         for enemy in self.enemies:
-            enemy.update()
+            if isinstance(enemy, Demon):
+                enemy.update(self.player.position, self.player, self.timer)
+            else:
+                enemy.update(self.player.position, self.player)
+
+            # Check collision with player
+            if enemy.rect.colliderect(self.player.rect):
+                self.player.take_damage(enemy.damage)
+
+        self.projectiles = [p for p in self.projectiles if p.update(self.enemies)]
+        self.enemies = [enemy for enemy in self.enemies if enemy.hp > 0]
         self.floating_texts = [text for text in self.floating_texts if not text.update()]
 
     def get_camera_offset(self, player_rect, screen_width, screen_height):

@@ -49,7 +49,7 @@ class Player:
         
         # Invincibility / damage tracking
         self.invincible = False
-        self.invincibility_duration = 0.5
+        self.invincibility_duration = 1
         self.last_hit_time = 0
 
         # Inventory and animations
@@ -65,26 +65,26 @@ class Player:
         
         # ----- HITBOX SCALING -----
         # For top-down: center the hitbox relative to the sprite.
-        HITBOX_SCALE = 0.5  # Adjust as needed (0.5, 0.7, etc.)
+        HITBOX_SCALE = 0.2  # Adjust as needed (0.5, 0.7, etc.)
         vertical_offset = -500  # Shift the hitbox up/down if needed.
 
         # Calculate the smaller hitbox dimensions
-        self.hitbox_width = int(self.frame_width * HITBOX_SCALE * 0.5)
-        self.hitbox_height = int(self.frame_height * 0.5 )
+        self.hitbox_width = int(self.frame_width * HITBOX_SCALE)
+        self.hitbox_height = int(self.frame_height * HITBOX_SCALE)
         
         # Center the rect on the player's position
         self.rect = pygame.Rect(
-            0 ,
-            0 ,
+            self.position.x - self.hitbox_width // 2 ,
+            self.position.y - self.hitbox_height // 2 ,
             self.hitbox_width,
-            self.hitbox_height
+            self.hitbox_height + 40
         )
         
         # Buffs dictionary
         self.buffs = {}
 
         # DEBUG: Toggle this to True if you want to visualize the hitbox
-        self.debug_hitbox = True
+        self.debug_hitbox = False
 
     def draw(self, screen, camera):
         """

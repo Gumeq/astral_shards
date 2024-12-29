@@ -58,25 +58,45 @@ class Game:
         self.state_manager.switch_state("start")
 
     def initialize_game_objects(self):
-        self.world = World(WORLD_WIDTH, WORLD_HEIGHT)
-        self.camera = Camera(WIDTH, HEIGHT, self.world.width, self.world.height)
+        # Load animations and data first
         self.player_animations = load_player_animations()
-        self.player = Player(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, self.player_animations, self.world, self.state_manager)
-        self.player.inventory = Inventory()
         self.enemy_data = load_enemy_data("assets/config/enemies.json")
+        
+        # Initialize Player without the world reference
+        self.player = Player(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, self.player_animations, None, self.state_manager)
+        
+        # Initialize World without the player reference
+        self.world = World(WORLD_WIDTH, WORLD_HEIGHT, None, self.timer)
+        
+        # Resolve the circular dependency
+        self.world.player = self.player
+        self.player.world = self.world
+        
+        # Initialize Camera after World is initialized
+        self.camera = Camera(WIDTH, HEIGHT, self.world.width, self.world.height)
+        
+        # Continue initializing the remaining game objects
+        self.player.inventory = Inventory()
         self.enemy_manager = EnemyManager(self.enemy_data, WORLD_WIDTH, WORLD_HEIGHT, self.world)
         self.wave_manager = WaveManager("assets/config/waves.json", self.world, self.enemy_data, self.enemy_manager, self.camera, self.timer)
         self.wave_manager.start_wave(0)
-        self.weapon_manager = WeaponManager("assets/config/weapons.json", self.player)
+        
+        # Initialize and equip weapons
+        self.weapon_manager = WeaponManager("assets/config/weapons.json", self.player, self.world.projectiles)
         basic_wand = self.weapon_manager.weapon_data["basic_wand"]
         self.weapon_manager.equip_weapon("basic_wand")
         self.player.inventory.equip("weapon", basic_wand)
-        self.ui = UI(self.font)
+        
+        # UI and other managers
+        self.ui = UI(self.font, self.wave_manager)
         self.consumable_manager = ConsumableManager("assets/config/consumables.json", self.timer)
         self.shop = Shop(self.font, self.player, self.consumable_manager, "assets/config/shop_items.json")
+        
+        # Game state tracking
         self.show_detailed_stats = True
         self.elapsed_pause_time = 0
         self.pause_start_time = None
+
 
     def reset_game(self):
         self.initialize_game_objects()
@@ -110,7 +130,7 @@ class Game:
         self.camera.update(self.player.rect)
         self.world.update()
         self.enemy_manager.update(self.player, self.timer)
-        self.weapon_manager.update(self.enemy_manager.enemies)
+        self.weapon_manager.update(self.world.enemies)
         self.player.update_buffs()
         self.player.inventory.update_consumables()
         self.world.check_shard_collection(self.player)

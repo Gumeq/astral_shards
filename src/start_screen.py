@@ -11,6 +11,9 @@ class StartScreen:
         self.start_time = time.time()
         self.state_manager = state_manager
 
+        # Load the background image
+        self.background_image = pygame.image.load("assets/images/backgrounds/grass_512x512.png")
+
     def on_enter(self):
         self.running = True
 
@@ -33,7 +36,14 @@ class StartScreen:
         pass
 
     def render(self, screen):
-        screen.fill((0, 0, 0))
+        # Resize the background image to fit the screen
+        screen_size = screen.get_size()
+        resized_background = pygame.transform.scale(self.background_image, screen_size)
+        
+        # Draw the resized background on the screen
+        screen.blit(resized_background, (0, 0))
+        
+        # Draw other elements on top of the background
         self.draw(screen)
 
     def draw(self, screen):

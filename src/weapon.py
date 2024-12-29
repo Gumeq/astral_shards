@@ -32,7 +32,7 @@ class Weapon:
         if self.can_fire():
             self.last_shot_time = pygame.time.get_ticks() / 1000
             projectile = Projectile(
-                position, target_position, self.projectile_speed,
+                position, target_position, self.projectile_speed + self.player.movement_speed ,
                 self.damage * self.player.ability_power,
                 self.range * self.player.attack_range,
                 self.image
@@ -69,10 +69,10 @@ class Projectile:
         screen.blit(self.image, screen_position.topleft)
 
 class WeaponManager:
-    def __init__(self, weapon_data_file, player):
+    def __init__(self, weapon_data_file, player, projectiles):
         self.weapon_data = self.load_weapon_data(weapon_data_file)
         self.active_weapon = None
-        self.projectiles = []
+        self.projectiles = projectiles
         self.player = player
 
     def load_weapon_data(self, json_file):

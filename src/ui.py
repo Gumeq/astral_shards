@@ -2,8 +2,9 @@ import pygame
 from settings import *
 
 class UI:
-    def __init__(self, font, large_font=None):
+    def __init__(self, font, wave_manager,large_font=None,):
         self.font = font
+        self.wave_manager = wave_manager
         self.large_font = large_font or pygame.font.Font("assets/fonts/dogicapixel.ttf", 32)
         self.small_font = pygame.font.Font("assets/fonts/dogicapixel.ttf", 12)
         self.elapsed_pause_time = 0
@@ -43,6 +44,7 @@ class UI:
             f"Attack Speed: {player.attack_speed:.2f}",
             f"Attack Range: {player.attack_range:.2f}",
             f"Luck: {player.luck:.2f}",
+            f"Wave: {self.wave_manager.current_wave['wave_number']}"
             # f"Astral Shards: {player.astral_shards}",
         ]
         x, y = 20, HEIGHT - 150
@@ -52,9 +54,12 @@ class UI:
 
     def draw_shards(self, screen, player):
         shards = player.astral_shards
-        x, y = WIDTH // 2 + 250 + 50 +20 , HEIGHT - 50
+        astral_shard_image = pygame.image.load("assets/images/items/astral_shard.png").convert_alpha()  
+        astral_shard_image = pygame.transform.scale(astral_shard_image, (32, 32)) 
+        x, y = WIDTH // 2 + 250 + 50 + 60 , HEIGHT - 50
         text = self.font.render(f"{int(shards)}", False, (255, 255, 255))
         screen.blit(text, (x, y))
+        screen.blit(astral_shard_image, (x - 40, y - 10 ))
 
     def draw_game_time(self, screen, timer):
         total_seconds = int(timer.get_time())

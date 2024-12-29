@@ -1,13 +1,13 @@
 [
 	{
 		"wave_number": 0,
-		"duration": 15,
+		"duration": 30,
 		"spawn_rate": 0.5,
 		"enemies": [{ "type": "bush", "count": 5 }]
 	},
 	{
 		"wave_number": 1,
-		"duration": 15,
+		"duration": 30,
 		"spawn_rate": 1,
 		"enemies": [{ "type": "mouse", "count": 5 }]
 	},
@@ -22,7 +22,7 @@
 	},
 	{
 		"wave_number": 3,
-		"duration": 30,
+		"duration": 60,
 		"spawn_rate": 1,
 		"enemies": [
 			{ "type": "fire_skull", "count": 10 },
@@ -33,7 +33,7 @@
 	},
 	{
 		"wave_number": 4,
-		"duration": 30,
+		"duration": 60,
 		"spawn_rate": 1,
 		"enemies": [
 			{ "type": "slime", "count": 10 },
@@ -54,7 +54,7 @@
 	},
 	{
 		"wave_number": 6,
-		"duration": 60,
+		"duration": 240,
 		"spawn_rate": 1,
 		"enemies": [{ "type": "demon", "count": 1 }],
 		"is_boss_wave": true

@@ -54,8 +54,7 @@ class WaveManager:
             return
 
         # 2. Check if all enemies are spawned AND there are no enemies alive
-        if all(enemy_group["count"] <= 0 for enemy_group in self.current_wave["enemies"]) \
-            and len(self.enemy_manager.enemies) == 0:
+        if all(enemy_group["count"] <= 0 for enemy_group in self.current_wave["enemies"]) and len(self.world.enemies) == 0:
             self.end_wave()
             return
 
@@ -104,7 +103,7 @@ class WaveManager:
                     else:
                         enemy = Enemy(x, y, enemy_properties, self.world)
 
-                    self.enemy_manager.enemies.append(enemy)
+                    self.world.enemies.append(enemy)
                     enemy_group["count"] -= 1
                     print(f"Spawned {enemy_type} at ({x}, {y}).")
                     return
