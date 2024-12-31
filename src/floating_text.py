@@ -9,7 +9,7 @@ class FloatingText:
         self.color = color
         self.duration = duration
         self.start_time = pygame.time.get_ticks() / 1000
-        self.font = pygame.font.Font("assets/fonts/dogicabold.ttf", 24)
+        self.font = pygame.font.Font("assets/fonts/dogicabold.ttf", 16)
         self.random_movement = pygame.math.Vector2(
             random.uniform(-0.5, 0.5),
             random.uniform(-0.2, -0.5)

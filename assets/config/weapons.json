@@ -14,7 +14,7 @@
 		"fire_rate": 1,
 		"projectile_speed": 10,
 		"range": 800,
-		"image": "assets/images/projectiles/Fireball1.png",
-		"scale": 4
+		"image": "assets/images/projectiles/Fireball.png",
+		"scale": 0.5
 	}
 }

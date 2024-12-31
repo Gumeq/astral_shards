@@ -105,8 +105,8 @@ class Player:
             pygame.draw.rect(screen, (255, 0, 0), hitbox_rect_on_screen, 2)
 
         # Draw health bar above the sprite
-        health_bar_position = (screen_position.x - 25, screen_position.y - 40)
-        # self.health_bar.draw(screen, health_bar_position, self.hp, self.max_hp)
+        health_bar_position = (screen_position.x - 25, screen_position.y + 70)
+        self.health_bar.draw(screen, health_bar_position, self.hp, self.max_hp)
 
     def update(self, keys):
         self.move(keys)

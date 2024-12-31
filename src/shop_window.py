@@ -1,7 +1,7 @@
 import pygame
 import json
 import logging
-from settings import *
+import settings 
 
 class Shop:
     def __init__(self, font, player, consumable_manager, shop_data_file):
@@ -122,12 +122,12 @@ class Shop:
         if not self.visible:
             return
         # Draw semi-transparent overlay
-        overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+        overlay = pygame.Surface((settings.WIDTH, settings.HEIGHT), pygame.SRCALPHA)
         overlay.fill((0, 0, 0, 180))
         screen.blit(overlay, (0, 0))
         # Shop box and borders
-        shop_width, shop_height = WIDTH - 200, HEIGHT - 200
-        shop_rect = pygame.Rect((WIDTH - shop_width) // 2, (HEIGHT - shop_height) // 2, shop_width, shop_height)
+        shop_width, shop_height = settings.WIDTH - 200, settings.HEIGHT - 200
+        shop_rect = pygame.Rect((settings.WIDTH - shop_width) // 2, (settings.HEIGHT - shop_height) // 2, shop_width, shop_height)
         pygame.draw.rect(screen, (50, 50, 50), shop_rect)
         pygame.draw.rect(screen, (255, 255, 255), shop_rect, 2)
         # Display Astral Shards balance

@@ -12,7 +12,7 @@ class StartScreen:
         self.state_manager = state_manager
 
         # Load the background image
-        self.background_image = pygame.image.load("assets/images/backgrounds/grass_512x512.png")
+        self.background_image = pygame.image.load("assets/images/backgrounds/start_bg.png")
 
     def on_enter(self):
         self.running = True

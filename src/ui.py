@@ -2,8 +2,9 @@ import pygame
 import settings
 
 class UI:
-    def __init__(self, font, wave_manager,large_font=None,):
+    def __init__(self, font, wave_manager,player,large_font=None,):
         self.font = font
+        self.player = player
         self.wave_manager = wave_manager
         self.large_font = large_font or pygame.font.Font("assets/fonts/dogicapixel.ttf", 32)
         self.small_font = pygame.font.Font("assets/fonts/dogicapixel.ttf", 12)

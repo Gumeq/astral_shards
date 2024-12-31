@@ -99,8 +99,12 @@ class Game:
         self.weapon_manager.equip_weapon("basic_wand")
         self.player.inventory.equip("weapon", basic_wand)
         
+        # better_wand = self.weapon_manager.weapon_data["better_wand"]
+        # self.weapon_manager.equip_weapon("better_wand")
+        # self.player.inventory.equip("weapon", better_wand)
+        
         # UI and other managers
-        self.ui = UI(self.font, self.wave_manager)
+        self.ui = UI(self.font, self.wave_manager, self.player)
         self.consumable_manager = ConsumableManager("assets/config/consumables.json", self.timer)
         self.shop = Shop(self.font, self.player, self.consumable_manager, "assets/config/shop_items.json")
         
@@ -126,7 +130,7 @@ class Game:
                     if not self.shop.visible:
                         self.state_manager.switch_state("shop")
                 elif not self.shop.visible:
-                    for i in range(5):
+                    for i in range(10):
                         if keys[pygame.K_1 + i]:
                             self.player.inventory.use_consumable(i, self.player)
         if self.shop.visible:
