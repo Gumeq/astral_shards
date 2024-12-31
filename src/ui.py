@@ -1,5 +1,5 @@
 import pygame
-from settings import *
+import settings
 
 class UI:
     def __init__(self, font, wave_manager,large_font=None,):
@@ -14,7 +14,7 @@ class UI:
         slot_size = 50
         padding = 10
         
-        x, y = WIDTH // 2 - 5*slot_size - 5*padding , HEIGHT - slot_size - padding*2
+        x, y = settings.WIDTH // 2 - 5*slot_size - 5*padding , settings.HEIGHT - slot_size - padding*2
 
         for i, consumable in enumerate(inventory.consumables):
             slot_x = x + i * (slot_size + padding)
@@ -47,7 +47,7 @@ class UI:
             f"Wave: {self.wave_manager.current_wave['wave_number']}"
             # f"Astral Shards: {player.astral_shards}",
         ]
-        x, y = 20, HEIGHT - 150
+        x, y = 20, settings.HEIGHT - 150
         for i, stat in enumerate(stats):
             text = self.small_font.render(stat, False, (255, 255, 255))
             screen.blit(text, (x, y + i * 20))
@@ -56,7 +56,7 @@ class UI:
         shards = player.astral_shards
         astral_shard_image = pygame.image.load("assets/images/items/astral_shard.png").convert_alpha()  
         astral_shard_image = pygame.transform.scale(astral_shard_image, (32, 32)) 
-        x, y = WIDTH // 2 + 250 + 50 + 60 , HEIGHT - 50
+        x, y = settings.WIDTH // 2 + 250 + 50 + 60 , settings.HEIGHT - 50
         text = self.font.render(f"{int(shards)}", False, (255, 255, 255))
         screen.blit(text, (x, y))
         screen.blit(astral_shard_image, (x - 40, y - 10 ))
@@ -67,5 +67,5 @@ class UI:
         seconds = total_seconds % 60
         time_text = f"{minutes:02}:{seconds:02}"
         text_surface = self.large_font.render(time_text, True, (255, 255, 255))
-        text_rect = text_surface.get_rect(center=(WIDTH // 2, 40))
+        text_rect = text_surface.get_rect(center=(settings.WIDTH // 2, 40))
         screen.blit(text_surface, text_rect)

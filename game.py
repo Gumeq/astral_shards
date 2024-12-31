@@ -1,6 +1,6 @@
 import pygame
 import time
-from settings import *
+import settings
 from src.world import World
 from loader import load_player_animations
 from src.player import Player
@@ -42,14 +42,26 @@ class GamePlay:
 class Game:
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+        # Set the display to fullscreen
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         pygame.display.set_caption("Astral Shards")
+        
+        # Get the actual fullscreen resolution
+                # Get fullscreen resolution
+        display_info = pygame.display.Info()
+        settings.WIDTH, settings.HEIGHT = display_info.current_w, display_info.current_h
+
         self.clock = pygame.time.Clock()
         self.running = True
         self.timer = Timer()
         self.state_manager = GameStateManager()
         self.font = pygame.font.Font("assets/fonts/dogicapixel.ttf", 16)
-        self.initialize_game_objects()
+        
+        # Initialize the camera with fullscreen dimensions
+        self.camera = Camera(settings.WIDTH, settings.HEIGHT, settings.WORLD_WIDTH, settings.WORLD_HEIGHT)
+
+        self.initialize_game_objects(settings.WIDTH, settings.HEIGHT)
         self.state_manager.register_state("start", StartScreen(self.font, self.state_manager))
         self.state_manager.register_state("gameplay", GamePlay(self, self.timer))
         self.state_manager.register_state("paused", PausedState(self.state_manager, self.font, self.timer, self))
@@ -57,27 +69,27 @@ class Game:
         self.state_manager.register_state("end", EndScreen(self.state_manager, self.font, self, self.player))
         self.state_manager.switch_state("start")
 
-    def initialize_game_objects(self):
+    def initialize_game_objects(self, screen_width, screen_height):
         # Load animations and data first
         self.player_animations = load_player_animations()
         self.enemy_data = load_enemy_data("assets/config/enemies.json")
         
         # Initialize Player without the world reference
-        self.player = Player(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, self.player_animations, None, self.state_manager)
+        self.player = Player(settings.WORLD_WIDTH / 2, settings.WORLD_HEIGHT / 2, self.player_animations, None, self.state_manager)
         
         # Initialize World without the player reference
-        self.world = World(WORLD_WIDTH, WORLD_HEIGHT, None, self.timer)
+        self.world = World(settings.WORLD_WIDTH, settings.WORLD_HEIGHT, None, self.timer)
         
         # Resolve the circular dependency
         self.world.player = self.player
         self.player.world = self.world
         
-        # Initialize Camera after World is initialized
-        self.camera = Camera(WIDTH, HEIGHT, self.world.width, self.world.height)
+        # Update camera dimensions dynamically
+        self.camera = Camera(screen_width, screen_height, settings.WORLD_WIDTH, settings.WORLD_HEIGHT)
         
-        # Continue initializing the remaining game objects
+        # Continue initializing other game objects
         self.player.inventory = Inventory()
-        self.enemy_manager = EnemyManager(self.enemy_data, WORLD_WIDTH, WORLD_HEIGHT, self.world)
+        self.enemy_manager = EnemyManager(self.enemy_data, settings.WORLD_WIDTH, settings.WORLD_HEIGHT, self.world)
         self.wave_manager = WaveManager("assets/config/waves.json", self.world, self.enemy_data, self.enemy_manager, self.camera, self.timer)
         self.wave_manager.start_wave(0)
         
@@ -160,5 +172,5 @@ class Game:
             self.state_manager.update()
             self.state_manager.render(self.screen)
             pygame.display.flip()
-            self.clock.tick(FPS)
+            self.clock.tick(settings.FPS)
         pygame.quit()
